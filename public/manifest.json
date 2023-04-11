@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "TakeFlix",
+  "name": "TakeFlix",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +8,18 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo Vittoria Vitt simbolo copiar.png",
+      "src": "",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo Vittoria Vitt simbolo copiar.png",
+      "src": "",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#e06f84",
+  "theme_color": "#fff",
   "background_color": "#ffffff"
 }
