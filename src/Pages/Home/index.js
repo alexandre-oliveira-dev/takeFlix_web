@@ -23,7 +23,7 @@ function Home() {
 
                 })
 
-            await api.get("/tv/popular")
+            await api.get("/tv/on_the_air")
                 .then((data) => {
                     setSeries(data.data.results.slice(0, 9))
                     setSeries2(data.data.results.slice(10, 20))
