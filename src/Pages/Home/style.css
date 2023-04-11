@@ -119,3 +119,22 @@
     width: 100%;
     cursor: pointer;
 }
+
+
+.btnPage{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    color: #fff;
+}
+#boxPagination{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 50%;
+    height: 100px;
+    gap: 10px;
+    overflow-x: hidden;
+    float: right;
+    align-items: center;
+    margin-right: 2rem;
+}

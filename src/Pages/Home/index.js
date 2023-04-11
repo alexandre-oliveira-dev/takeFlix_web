@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import api from '../../services/api';
 import '../../App.css'
 import { toast } from 'react-toastify'
@@ -13,45 +13,75 @@ function Home() {
     const [series, setSeries] = useState([]);
     const [series2, setSeries2] = useState([]);
 
-    useEffect(() => {
+    const [totalPage, setTotalPage] = useState(0)
+    const [page, setPage] = useState(1)
+    const [countBtn, setCountBtn] = useState(10)
 
+    useMemo(() => {
         async function loadFilmes() {
-            await api.get("movie/now_playing")
+            await api.get(`movie/now_playing?page=${page}`)
                 .then((data) => {
                     setFilmes(data.data.results.slice(0, 9))
                     setFilmes2(data.data.results.slice(10, 20))
-
+                    setTotalPage(data.data.total_pages)
+                    document.querySelector('.section-1').setAttribute('style', `background-image:url(${`https://image.tmdb.org/t/p/original/${data.data.results[0].backdrop_path}`})`)
                 })
 
-            await api.get("/tv/on_the_air")
+            await api.get(`/tv/popular?page=${page}`)
                 .then((data) => {
                     setSeries(data.data.results.slice(0, 9))
                     setSeries2(data.data.results.slice(10, 20))
-                    //console.log(data.data)
                 })
-
-
-            document.querySelector('.section-1').setAttribute('style', `background-image:url(${`https://image.tmdb.org/t/p/original/${series.map(item => item.backdrop_path)[0]}`})`)
         }
         loadFilmes();
 
-    }, [filmes])
+    }, [countBtn, page])
 
+
+
+
+    const Pagination = () => {
+        const buttons = [];
+        useMemo(() => {
+
+            for (let i = 0; i < totalPage; i++) {
+                buttons.push(
+                    <div>
+                        <button onClick={() => {
+                            document.querySelectorAll('.btnPage')[i].setAttribute('style', 'background:#2d2d2d !important')
+                            setPage(i)
+                            console.log(i)
+                        }} key={i} type="button" className='btnPage'>
+                            {i}
+                        </button>
+                    </div>
+                );
+            }
+        }, [countBtn])
+
+        return (
+            <div id="boxPagination">
+                {buttons.slice(1, countBtn)} ...<button onClick={(() => {
+                    setCountBtn(countBtn + 1)
+                })} className='btnPage'>+</button>
+            </div>
+        );
+    };
     return (
         <div className='container-home'>
             <Header></Header>
             <section className='section-1'>
                 <div className='title'><h1>Em Cartaz</h1></div>
                 <div className='title-fime-cartaz'>
-                    <h1>{series.map(item => item.name)[0]}</h1>
-                    <h3>Avaliação: {series.map(item => item.vote_average)[0]}</h3>
+                    <h1>{filmes.map(item => item.name)[0]}</h1>
+                    <h3>Avaliação: {filmes.map(item => item.vote_average)[0]}</h3>
                     <div className='btns-filme-cartaz'>
-                        <a target={'_blank'} href={`https://www.youtube.com/results?search_query=trailer ${series.map(item => item.name)[0]}`}>Ver Trailer</a>
+                        <a target={'_blank'} href={`https://www.youtube.com/results?search_query=trailer ${filmes.map(item => item.name)[0]}`}>Ver Trailer</a>
                         <button>Adicionar aos Favoritos</button>
                     </div>
                 </div>
                 <div className='banner-filme-cartaz'>
-                    <img onClick={() => window.location.href = `/filme/${series.map(item => item.id)[0]}`} src={`https://image.tmdb.org/t/p/original/${series.map(item => item.poster_path)[0]}`}></img>
+                    <img onClick={() => window.location.href = `/filme/${filmes.map(item => item.id)[0]}`} src={`https://image.tmdb.org/t/p/original/${filmes.map(item => item.poster_path)[0]}`}></img>
                 </div>
             </section>
             <section className='section2'>
@@ -117,6 +147,7 @@ function Home() {
                         })
                     }
                 </div>
+                <Pagination></Pagination>
             </section>
         </div>
     )
