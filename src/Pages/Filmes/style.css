@@ -1,0 +1,30 @@
+.containerPageFilmes {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #2d2d2d;
+}
+
+.containerListFilms {
+    margin-top: 4rem;
+}
+
+.boxListfilmesFilmes {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding-bottom: 1rem;
+}
+.boxBtnNextPage{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#btnNextPage{
+    padding: 10px;
+    background-color: red;
+    color: #fff;
+}

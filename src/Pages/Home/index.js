@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import Header from '../../components/Header'
 import './style.css'
 import Title from '../../components/Title';
+import { useParams } from 'react-router-dom';
 
 
 function Home() {
@@ -14,12 +15,12 @@ function Home() {
     const [series2, setSeries2] = useState([]);
 
     const [totalPage, setTotalPage] = useState(0)
-    const [page, setPage] = useState(1)
-    const [countBtn, setCountBtn] = useState(10)
+
+    const { number } = useParams('number')
 
     useMemo(() => {
         async function loadFilmes() {
-            await api.get(`movie/now_playing?page=${page}`)
+            await api.get(`movie/now_playing?page=${!number ? 1 : number}`)
                 .then((data) => {
                     setFilmes(data.data.results.slice(0, 9))
                     setFilmes2(data.data.results.slice(10, 20))
@@ -27,15 +28,15 @@ function Home() {
                     document.querySelector('.section-1').setAttribute('style', `background-image:url(${`https://image.tmdb.org/t/p/original/${data.data.results[0].backdrop_path}`})`)
                 })
 
-            await api.get(`/tv/popular?page=${page}`)
+            await api.get(`/tv/popular?page=${!number ? 1 : number}`)
                 .then((data) => {
                     setSeries(data.data.results.slice(0, 9))
                     setSeries2(data.data.results.slice(10, 20))
                 })
         }
         loadFilmes();
+    }, [number])
 
-    }, [countBtn, page])
 
 
 
@@ -43,30 +44,32 @@ function Home() {
     const Pagination = () => {
         const buttons = [];
         useMemo(() => {
-
             for (let i = 0; i < totalPage; i++) {
                 buttons.push(
                     <div>
                         <button onClick={() => {
-                            document.querySelectorAll('.btnPage')[i].setAttribute('style', 'background:#2d2d2d !important')
-                            setPage(i)
-                            console.log(i)
+                            if (Number(number) === i) {
+                                window.location.reload()
+                                return
+                            }
+                            window.location.href = `/page/${i}`
                         }} key={i} type="button" className='btnPage'>
                             {i}
                         </button>
                     </div>
                 );
             }
-        }, [countBtn])
+        }, [number])
 
         return (
             <div id="boxPagination">
-                {buttons.slice(1, countBtn)} ...<button onClick={(() => {
-                    setCountBtn(countBtn + 1)
-                })} className='btnPage'>+</button>
+                {buttons.slice(1, !number ? 1 + 2 : Number(number) + 2)} ...
+                <button onClick={(() => window.location.href = `/page/${totalPage}`)} className='btnPage'>{totalPage}</button>
             </div>
         );
     };
+
+
     return (
         <div className='container-home'>
             <Header></Header>
@@ -88,7 +91,6 @@ function Home() {
                 <Title color="#fff" texto='Lançamentos'></Title>
 
                 <div className='container-lista-filmes'>
-
                     {
                         filmes.map(item => {
                             return (
@@ -100,8 +102,6 @@ function Home() {
                             )
                         })
                     }
-
-
                 </div>
                 <div className='container-lista-filmes'>
 

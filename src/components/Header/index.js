@@ -10,10 +10,10 @@ function Header() {
             </div>
             <div className='btn-area-header'>
                 <div>
-                    <button>Home</button>
+                    <button onClick={() => window.location.href= '/page/1'}>Home</button>
                 </div>
                 <div>
-                    <button>Filmes</button>
+                    <button onClick={() => window.location.href= '/filmes/page/1'}>Filmes</button>
                 </div>
                 <div>
                     <button>Séries</button>
@@ -28,7 +28,7 @@ function Header() {
                     <button>Login</button>
                 </div>
                 <div>
-                    <button onClick={()=> window.location.href='/cadastro'}>Cadastre-se</button>
+                    <button onClick={() => window.location.href = '/cadastro'}>Cadastre-se</button>
                 </div>
 
             </div>
