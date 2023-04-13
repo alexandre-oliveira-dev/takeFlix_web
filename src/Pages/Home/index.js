@@ -126,7 +126,7 @@ function Home() {
                             return (
                                 <div key={item.id}>
                                     <div className='item-filme'>
-                                        <img onClick={() => window.location.href = `/series/${item.id}`} src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}></img>
+                                        <img onClick={() => window.location.href = `/serie/${item.id}`} src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}></img>
                                     </div>
                                 </div>
                             )
@@ -140,7 +140,7 @@ function Home() {
                             return (
                                 <div key={item.id}>
                                     <div className='item-filme'>
-                                        <img onClick={() => window.location.href = `/series/${item.id}`} src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}></img>
+                                        <img onClick={() => window.location.href = `/serie/${item.id}`} src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}></img>
                                     </div>
                                 </div>
                             )
