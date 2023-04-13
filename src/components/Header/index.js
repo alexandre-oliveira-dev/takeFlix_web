@@ -16,11 +16,9 @@ function Header() {
                     <button onClick={() => window.location.href= '/filmes/page/1'}>Filmes</button>
                 </div>
                 <div>
-                    <button>Séries</button>
+                    <button onClick={() => window.location.href= '/series/page/1'}>Séries</button>
                 </div>
-                <div>
-                    <button>Lançamentos</button>
-                </div>
+              
             </div>
 
             <div className='login-area-user'>

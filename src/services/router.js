@@ -6,6 +6,7 @@ import Favoritos from "../Pages/Favoritos";
 import Serie from '../Pages/Serie'
 import Cadastro from '../Pages/Cadastro';
 import Filmes from '../Pages/Filmes';
+import Series from '../Pages/Series';
 
 function RoutesApp() {
     return (
@@ -17,6 +18,7 @@ function RoutesApp() {
             <Route path='/Favoritos/' component={Favoritos}></Route>
             <Route path='/cadastro' component={Cadastro}></Route>
             <Route path='/filmes/page/:number' component={Filmes}></Route>
+            <Route path='/series/page/:number' component={Series}></Route>
         </Switch >
     )
 }
