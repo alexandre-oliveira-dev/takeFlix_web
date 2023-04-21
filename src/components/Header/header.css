@@ -71,4 +71,7 @@
     .btn-area-header button{
         font-size: 15px;
     }
+    .btn-area-header{
+        gap:15px
+    }
 }
