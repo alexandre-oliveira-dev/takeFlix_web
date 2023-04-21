@@ -24,7 +24,6 @@ function Series() {
         .catch(() => {
           console.log("FILME NAO ENCONTRADo");
         });
-
     }
 
     loadFilme();
@@ -44,19 +43,18 @@ function Series() {
   }
 
   function salvarFilme() {
-    const minhaLista = localStorage.getItem("@primeflix");
+    const minhaLista = JSON.parse(localStorage.getItem("@primeflix")) || [];
 
-    let filmesSalvos = JSON.parse(minhaLista) || [];
-
-    const hasFilme = filmesSalvos.some((filmesSalvo) => filmesSalvo.id === filme.id);
+    const hasFilme = minhaLista.some((filmesSalvo) => filmesSalvo.id === filme[0].id);
 
     if (hasFilme) {
       toast.error("Esse filme ja está na lista");
       return;
     }
 
-    filmesSalvos.push(filme);
-    localStorage.setItem("@primeflix", JSON.stringify(filmesSalvos));
+    //console.log(minhaLista);
+    minhaLista.push(filme[0]);
+    localStorage.setItem("@primeflix", JSON.stringify(minhaLista));
     toast.success("Filme salvo com sucesso!");
   }
 

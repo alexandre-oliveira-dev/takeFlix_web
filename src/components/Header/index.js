@@ -18,6 +18,9 @@ function Header() {
                 <div>
                     <button onClick={() => window.location.href= '/series/page/1'}>Séries</button>
                 </div>
+                <div>
+                    <button onClick={() => window.location.href= '/favoritos'}>Meus Favoritos</button>
+                </div>
               
             </div>
 

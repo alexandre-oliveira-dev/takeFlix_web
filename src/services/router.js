@@ -17,7 +17,7 @@ function RoutesApp() {
       <Route exact path="/page/:number" component={Home}></Route>
       <Route path="/filme/:idfilme" component={Filme}></Route>
       <Route path="/serie/:idserie" component={Serie}></Route>
-      <Route path="/Favoritos/" component={Favoritos}></Route>
+      <Route path="/favoritos/" component={Favoritos}></Route>
       <Route path="/cadastro" component={Cadastro}></Route>
       <Route path="/filmes/page/:number" component={Filmes}></Route>
       <Route path="/series/page/:number" component={Series}></Route>

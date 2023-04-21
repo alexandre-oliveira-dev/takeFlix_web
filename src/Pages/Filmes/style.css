@@ -44,15 +44,17 @@
     gap: 10px;
     justify-content: center;
 }
-.boxCategorias input{
+
+.boxCategorias input {
     height: 35px;
     padding-left: 10px;
     outline: none;
     color: #2d2d2d;
     border-radius: 10px;
-    border:0;
+    border: 0;
 }
-.boxCategorias button{
+
+.boxCategorias button {
     padding: 10px;
     background-color: red;
     color: #fff;
@@ -60,11 +62,12 @@
     border-radius: 10px;
     transition: 0.3s ease;
 }
-.boxCategorias button:hover{
+
+.boxCategorias button:hover {
     background-color: rgb(250, 117, 117);
 }
 
-.boxCategorias select{
+.boxCategorias select {
     border: 0;
     background-color: #fff;
     color: #2d2d2d;
@@ -76,5 +79,12 @@
     .titleGenere {
 
         font-size: 17px;
+    }
+
+    .item-filme {
+        max-width: 170px;
+    }
+    .boxCategorias{
+        padding-left: 0;
     }
 }

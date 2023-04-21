@@ -124,13 +124,16 @@
   }
 
   .box-info-filme {
-    width: 100%;
+    width: 100% !important;
+    margin-top: 20px;
   }
   .info-text{
-    margin-top: 4rem;
     background-color: #2d2d2d;
     width: 100% !important;
     padding: 10px;
+  }
+  .filme-info .poster{
+    width: auto !important;
   }
 
 }
