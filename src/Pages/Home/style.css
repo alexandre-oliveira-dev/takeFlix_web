@@ -139,3 +139,19 @@
     margin-right: 2rem;
     color: #fff;
 }
+
+@media(max-width:500px){
+    .banner-filme-cartaz img{
+        width: 200px;
+    }
+    .banner-filme-cartaz{
+        bottom: 30px;
+        top: auto;
+    }
+    .title-fime-cartaz{
+        left: 50px;
+    }
+    .title{
+        left: 50px;
+    }
+}
