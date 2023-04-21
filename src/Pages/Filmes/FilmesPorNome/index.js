@@ -1,27 +1,29 @@
 import react, { useEffect, useState } from "react";
-import "./style.css";
-import api from "../../services/api";
-import Header from "../../components/Header";
+import "../style.css";
+import api from "../../../services/api";
+import Header from "../../../components/Header";
 import { useParams } from "react-router-dom";
 
-export default function Filmes() {
+export default function FilmesPorGenero() {
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
   const [generes, setGeneres] = useState([]);
   const [nomefilme, setNomefilme] = useState("");
   const [totalPage, setTotalPage] = useState();
 
-  const { number } = useParams();
+  const { number, nomefilmeurl } = useParams();
 
   useEffect(() => {
     async function loadFilmes() {
-      await api.get(`/movie/popular?page=${number}`).then((value) => {
-        setData(value.data.results);
-        setTotalPage(value.data.total_pages);
-      });
+      await api
+        .get(
+          `/search/movie?api_key=6488e6c48fd609153ab42d7243bf5670&query=${nomefilmeurl}&page=${number}`
+        )
+        .then((value) => {
+          setData(value.data.results);
+          setTotalPage(value.data.total_pages);
+        });
     }
 
-    console.log(data);
     loadFilmes();
   }, []);
 
@@ -31,7 +33,6 @@ export default function Filmes() {
       .then((value) => {
         //console.log(value);
         setGeneres(value.data.genres);
-        console.log(generes);
       })
       .catch((err) => {
         console.log(err);
@@ -62,7 +63,7 @@ export default function Filmes() {
           Pesquisar
         </button>
         <select
-          onChange={async (value) => {
+          onChange={(value) => {
             window.location.href = `/filmes/genero/${value.target.value}/page/${1}`;
           }}
         >
@@ -77,7 +78,9 @@ export default function Filmes() {
         </select>
       </div>
       <section className="containerListFilms">
-   
+        <div>
+          <h2 className="titleGenere">{String(nomefilmeurl)}</h2>
+        </div>
         <div className="boxListfilmesFilmes">
           {data.map((item) => {
             return (
@@ -102,7 +105,7 @@ export default function Filmes() {
                 return;
               }
 
-              window.location.href = `/filmes/page/${Number(number) - 1}`;
+              window.location.href = `/filmes/${nomefilmeurl}/page/${Number(number) - 1}`;
             }}
           >
             Voltar para a pagina {Number(number - 1)}
@@ -117,13 +120,13 @@ export default function Filmes() {
             if (number == totalPage) {
               return;
             }
-            window.location.href = `/filmes/page/${Number(number) + 1}`;
+            window.location.href = `/filmes/${nomefilmeurl}/page/${Number(number) + 1}`;
           }}
         >
           {totalPage > 1 && totalPage > number ? "Próxima página " : ""}
           {totalPage > 1 && totalPage > number && Number(number) + 1} total - {totalPage}
         </button>
-      </div>{" "}
+      </div>
     </div>
   );
 }

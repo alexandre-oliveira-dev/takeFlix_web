@@ -16,15 +16,65 @@
     gap: 5px;
     padding-bottom: 1rem;
 }
-.boxBtnNextPage{
+
+.boxBtnNextPage {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 1rem;
 }
 
-#btnNextPage{
+#btnNextPage {
     padding: 10px;
     background-color: red;
     color: #fff;
+}
+
+.titleGenere {
+    margin: 0 0 1rem 1rem;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+}
+
+.boxCategorias {
+    width: 100%;
+    padding-left: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+.boxCategorias input{
+    height: 35px;
+    padding-left: 10px;
+    outline: none;
+    color: #2d2d2d;
+    border-radius: 10px;
+    border:0;
+}
+.boxCategorias button{
+    padding: 10px;
+    background-color: red;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+.boxCategorias button:hover{
+    background-color: rgb(250, 117, 117);
+}
+
+.boxCategorias select{
+    border: 0;
+    background-color: #fff;
+    color: #2d2d2d;
+    outline: none;
+    border-radius: 10px;
+}
+
+@media(max-width:500px) {
+    .titleGenere {
+
+        font-size: 17px;
+    }
 }
