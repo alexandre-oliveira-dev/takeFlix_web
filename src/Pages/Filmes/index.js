@@ -63,7 +63,7 @@ export default function Filmes() {
         </button>
         <select
           onChange={async (value) => {
-            window.location.pathname = `/filmes/page/${number}/${value.target.value}`;
+          //  window.location.pathname = `/filmes/page/${number}/${value.target.value}`;
             await api
               .get(
                 `/discover/movie?api_key=6488e6c48fd609153ab42d7243bf5670&with_genres=${
