@@ -121,6 +121,7 @@ function Home() {
             src={`https://image.tmdb.org/t/p/original/${filmes.map((item) => item.poster_path)[0]}`}
           ></img>
         </div>
+        <div className="blurImage"></div>
       </section>
       <section className="section2">
         <Title color="#fff" texto="Lançamentos"></Title>

@@ -1,21 +1,30 @@
 import React from "react";
 
-
 const Title = (props) => {
-    return (
-        <h2 style={{
-            color: props.color,
-            fontSize: "30px",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "20px",
-            marginBottom: "20px",
-            height: "100px",
-            alignItems:"center"
-        }}>
-            {props.texto}
-        </h2>
-    )
-}
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          width: "max-content",
+          color: props.color,
+          fontSize: "30px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "20px",
+          marginBottom: "20px",
+        }}
+      >
+        {props.texto}
+      </div>
+    </div>
+  );
+};
 export default Title;

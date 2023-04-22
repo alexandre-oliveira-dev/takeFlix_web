@@ -11,6 +11,7 @@
     z-index: 1;
     object-fit: cover;
     background-size: cover;
+    position: relative;
 }
 
 .title {
@@ -43,7 +44,8 @@
 
 
 }
-.banner-filme-cartaz img{
+
+.banner-filme-cartaz img {
     width: 300px;
     border-radius: 10px;
     cursor: pointer;
@@ -60,7 +62,8 @@
     gap: 10px;
 
 }
-.title-fime-cartaz h3{
+
+.title-fime-cartaz h3 {
     color: #fff;
 }
 
@@ -94,7 +97,6 @@
     width: 100%;
     height: auto;
     background-color: #2d2d2d;
-    
 }
 
 .container-lista-filmes {
@@ -121,13 +123,14 @@
 }
 
 
-.btnPage{
+.btnPage {
     width: 30px;
     height: 30px;
     background-color: red;
     color: #fff;
 }
-#boxPagination{
+
+#boxPagination {
     display: flex;
     flex-wrap: wrap;
     max-width: 50%;
@@ -140,18 +143,34 @@
     color: #fff;
 }
 
-@media(max-width:500px){
-    .banner-filme-cartaz img{
+.blurImage {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    background: linear-gradient(to bottom, #5a5a5a00, #2f2f2f21, #2d2d2d);
+    bottom: 0;
+}
+
+@media(max-width:500px) {
+    .banner-filme-cartaz img {
         width: 200px;
     }
-    .banner-filme-cartaz{
-        bottom: 30px;
+
+    .banner-filme-cartaz {
+        bottom: 100px;
         top: auto;
-    }
-    .title-fime-cartaz{
         left: 50px;
     }
-    .title{
+
+    .title-fime-cartaz {
         left: 50px;
+    }
+
+    .title {
+        left: 50px;
+    }
+
+    .title-fime-cartaz h1 {
+        font-size: 20px;
     }
 }
