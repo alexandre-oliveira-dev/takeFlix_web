@@ -16,7 +16,7 @@ export default function FilmesPorGenero() {
     async function loadFilmes() {
       await api
         .get(
-          `/search/movie?api_key=6488e6c48fd609153ab42d7243bf5670&query=${nomefilmeurl}&page=${number}`
+          `/search/tv?api_key=6488e6c48fd609153ab42d7243bf5670&query=${nomefilmeurl}&page=${number}`
         )
         .then((value) => {
           setData(value.data.results);
@@ -87,7 +87,7 @@ export default function FilmesPorGenero() {
               <div key={item.id}>
                 <div className="item-filme">
                   <img
-                    onClick={() => (window.location.href = `/filme/${item.id}`)}
+                    onClick={() => (window.location.href = `/serie/${item.id}`)}
                     src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                   ></img>
                 </div>
