@@ -3,6 +3,8 @@ import "./style.css";
 import api from "../../services/api";
 import Header from "../../components/Header";
 import { useParams } from "react-router-dom";
+import { BsSearch } from "react-icons/bs";
+import BoxSearchMovies from "../../components/BoxSearchMovies";
 
 export default function Filmes() {
   const [data, setData] = useState([]);
@@ -41,43 +43,8 @@ export default function Filmes() {
   return (
     <div className="containerPageFilmes">
       <Header></Header>
-      <div className="boxCategorias">
-        <input
-          type="search"
-          placeholder="Nome do filme"
-
-          onChange={(e) => {
-            setNomefilme(e.target.value);
-          }}
-        ></input>
-        <button
-          onClick={() => {
-            if (!nomefilme) {
-              return;
-            }
-            window.location.href = `/filmes/${nomefilme}/page/${1}`;
-            setNomefilme("");
-          }}
-        >
-          Pesquisar
-        </button>
-        <select
-          onChange={async (value) => {
-            window.location.href = `/filmes/genero/${value.target.value}/page/${1}`;
-          }}
-        >
-          <option>Generos</option>
-          {generes.map((item) => {
-            return (
-              <>
-                <option value={item.id}>{item.name}</option>
-              </>
-            );
-          })}
-        </select>
-      </div>
+      <BoxSearchMovies></BoxSearchMovies>
       <section className="containerListFilms">
-   
         <div className="boxListfilmesFilmes">
           {data.map((item) => {
             return (

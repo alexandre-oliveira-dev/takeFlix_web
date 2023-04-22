@@ -3,6 +3,7 @@ import "../style.css";
 import api from "../../../services/api";
 import Header from "../../../components/Header";
 import { useParams } from "react-router-dom";
+import BoxSearchSeries from "../../../components/BoxSearchSeries";
 
 export default function FilmesPorGenero() {
   const [data, setData] = useState([]);
@@ -42,41 +43,8 @@ export default function FilmesPorGenero() {
   return (
     <div className="containerPageFilmes">
       <Header></Header>
-      <div className="boxCategorias">
-        <input
-          type="search"
-          placeholder="Nome da série"
+      <BoxSearchSeries></BoxSearchSeries>
 
-          onChange={(e) => {
-            setNomefilme(e.target.value);
-          }}
-        ></input>
-        <button
-          onClick={() => {
-            if (!nomefilme) {
-              return;
-            }
-            window.location.href = `/series/${nomefilme}/page/${1}`;
-            setNomefilme("");
-          }}
-        >
-          Pesquisar
-        </button>
-        <select
-          onChange={(value) => {
-            window.location.href = `/series/genero/${value.target.value}/page/${1}`;
-          }}
-        >
-          <option>Generos</option>
-          {generes.map((item) => {
-            return (
-              <>
-                <option value={item.id}>{item.name}</option>
-              </>
-            );
-          })}
-        </select>
-      </div>
       <section className="containerListFilms">
         <div>
           <h2 className="titleGenere">{String(nomefilmeurl)}</h2>

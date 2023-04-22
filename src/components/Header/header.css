@@ -42,11 +42,15 @@
 
 .btn-area-header button {
     background-color: transparent;
-    font-size: 20px;
+    font-size: 18px;
     border: 0;
     color: white;
     cursor: pointer;
+    transition: 0.3s ease;
+}
 
+.btn-area-header button:hover {
+    color: red;
 }
 
 .login-area-user {
@@ -64,14 +68,27 @@
 
 }
 
-@media(max-width:500px){
-    .login-area-user{
+@media(max-width:500px) {
+    .login-area-user {
         display: none;
     }
-    .btn-area-header button{
+
+    .btn-area-header button {
         font-size: 15px;
     }
-    .btn-area-header{
-        gap:15px
+
+    .btn-area-header {
+        gap: 15px
+    }
+}
+
+@media(max-width:400px) {
+    .btn-area-header {
+        gap: 9px;
+    }
+
+    .logo {
+        margin-right: 10px;
+        font-size: 10px;
     }
 }
