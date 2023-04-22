@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 10px;
 }
 
 .filme-info .poster {
@@ -76,7 +77,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 80%;
+  width: 90%;
   color: white;
   gap: 20px;
 }

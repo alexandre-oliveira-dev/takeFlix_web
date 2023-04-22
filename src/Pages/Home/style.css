@@ -157,17 +157,19 @@
     }
 
     .banner-filme-cartaz {
-        bottom: 100px;
+        bottom: 200px;
         top: auto;
         left: 50px;
     }
 
     .title-fime-cartaz {
         left: 50px;
+        top: 170px;
     }
 
     .title {
         left: 50px;
+        top: 100px;
     }
 
     .title-fime-cartaz h1 {

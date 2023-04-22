@@ -94,7 +94,7 @@ function Series() {
                       onChange={async (e) => {
                         await api.get(`/tv/${idserie}/season/${e.target.value}`).then((value) => {
                           setEp(value.data.episodes);
-                         // console.log(ep);
+                          // console.log(ep);
                         });
                         setSeasonsnumber(e.target.value);
                       }}
@@ -103,9 +103,7 @@ function Series() {
                       {seasons?.map((item) => {
                         return (
                           <option key={item.id} value={item.season_number}>
-                            {Number(item.season_number) == 0
-                              ? +Number(item.season_number) + 1
-                              : Number(item.season_number)}
+                            {Number(item.season_number) + 1}
                             ° Temporada
                           </option>
                         );

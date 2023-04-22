@@ -20,7 +20,7 @@ function Series() {
           setFilme([response.data]);
           //setDiretores(response.data.created_by)
           setLoading(false);
-          console.log(response.data);
+          //console.log(response.data);
         })
         .catch(() => {
           console.log("FILME NAO ENCONTRADo");
@@ -83,7 +83,7 @@ function Series() {
                     id="EmbedderContainer"
                     src={url}
                     width="100%"
-                    height={window.screen.width > 500 ? "400px" : "300px"}
+                    height={window.screen.width > 500 ? "330px" : "300px"}
                     allowfullscreen="allowfullscreen"
                     frameborder="0"
                   ></iframe>
@@ -92,7 +92,12 @@ function Series() {
               <div className="info-text">
                 <h3>Sinopse</h3>
                 <span>{item.overview}</span>
-                <span>{item.imdb_id}</span>
+                <span>Lançamento: {item.release_date}</span>
+                <span>Duração: {item.runtime} min</span>
+
+                <strong>
+                  Avalição: {item.vote_average} / 10 - {item.vote_count} avaliações
+                </strong>
 
                 <strong>Avalição: {item.vote_average} / 10</strong>
                 <br></br>
