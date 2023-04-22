@@ -31,7 +31,7 @@ function Home() {
           );
       });
 
-      await api.get(`/tv/popular?page=${!number ? 1 : number}`).then((data) => {
+      await api.get(`/tv/top_rated?page=${!number ? 1 : number}`).then((data) => {
         setSeries(data.data.results.slice(0, 9));
         setSeries2(data.data.results.slice(10, 20));
       });
@@ -83,18 +83,36 @@ function Home() {
           <h1>Em Cartaz</h1>
         </div>
         <div className="title-fime-cartaz">
-          <h1>{filmes.map((item) => item.name)[0]}</h1>
+          <h1>{filmes.map((item) => item.title)[0]}</h1>
           <h3>Avaliação: {filmes.map((item) => item.vote_average)[0]}</h3>
           <div className="btns-filme-cartaz">
             <a
               target={"_blank"}
               href={`https://www.youtube.com/results?search_query=trailer ${
-                filmes.map((item) => item.name)[0]
+                filmes.map((item) => item.title)[0]
               }`}
             >
               Ver Trailer
             </a>
-            <button>Adicionar aos Favoritos</button>
+            <button
+              onClick={() => {
+                const minhaLista = JSON.parse(localStorage.getItem("@primeflix")) || [];
+
+                const hasFilme = minhaLista.some((filmesSalvo) => filmesSalvo.id === filmes[0].id);
+
+                if (hasFilme) {
+                  toast.error("Esse filme ja está na lista");
+                  return;
+                }
+
+                //console.log(minhaLista);
+                minhaLista.push(filmes[0]);
+                localStorage.setItem("@primeflix", JSON.stringify(minhaLista));
+                toast.success("Filme salvo com sucesso!");
+              }}
+            >
+              Adicionar aos Favoritos
+            </button>
           </div>
         </div>
         <div className="banner-filme-cartaz">

@@ -8,6 +8,8 @@ import Cadastro from "../Pages/Cadastro";
 import Filmes from "../Pages/Filmes";
 import FilmesGenero from "../Pages/Filmes/FilmesPorGenero/index";
 import FilmesPornome from "../Pages/Filmes/FilmesPorNome/index";
+import SeriesPorGenero from "../Pages/Series/SeriesPorGenero";
+import SeriesPornome from "../Pages/Series/SeriesPorNome";
 import Series from "../Pages/Series";
 
 function RoutesApp() {
@@ -23,6 +25,8 @@ function RoutesApp() {
       <Route path="/series/page/:number" component={Series}></Route>
       <Route path="/filmes/genero/:genero/page/:number" component={FilmesGenero}></Route>
       <Route path="/filmes/:nomefilmeurl/page/:number" component={FilmesPornome}></Route>
+      <Route path="/series/genero/:genero/page/:number" component={SeriesPorGenero}></Route>
+      <Route path="/series/:nomefilmeurl/page/:number" component={SeriesPornome}></Route>
     </Switch>
   );
 }

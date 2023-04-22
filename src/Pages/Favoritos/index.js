@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./favoritos.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Header from "../../components/Header";
 
 function Favoritos() {
   const [filmes, setFilmes] = useState([]);
@@ -24,24 +25,36 @@ function Favoritos() {
 
   return (
     <div className="meus-filmes">
+      <Header></Header>
       <h2 className="titleGenere">Meus Favoritos</h2>
-      <ul>
+      <ul
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
         {filmes?.map((item) => {
           return (
-            <li className="item" key={item.id}>
-              <div className="box-info">
-                <img
-                  className="imgposter2"
-                  src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
-                  alt={item.title}
-                />
-                <span>{item.title}</span>
-              </div>
-              <div className="btn-area2">
-                <Link to={`/filme/${item.id}`}>Ver detalhes</Link>
-                <button onClick={() => excluir(item.id)}>Excluir</button>
-              </div>
-            </li>
+            <>
+              <li className="item" key={item.id}>
+                <div className="box-info">
+                  <img
+                    className="imgposter2"
+                    src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    alt={item.title}
+                  />
+                  <span>{item.title}</span>
+                  <span>Avaliação: {item.vote_average}</span>
+                </div>
+                <div className="btn-area2">
+                  <Link to={`/filme/${item.id}`}>Ver detalhes</Link>
+                  <button onClick={() => excluir(item.id)}>Excluir</button>
+                </div>
+              </li>
+              <hr className="hr"></hr>
+            </>
           );
         })}
       </ul>
