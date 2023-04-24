@@ -5,6 +5,7 @@ import "../Filme/filme.css";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
+import dayjs from "dayjs";
 
 function Series() {
   const { idserie } = useParams();
@@ -25,6 +26,7 @@ function Series() {
           //setDiretores(response.data.created_by)
           setLoading(false);
           setSeasons(response.data.seasons);
+          document.title = response.data.name;
           //console.log(response.data);
         })
         .catch(() => {
@@ -49,12 +51,14 @@ function Series() {
     const hasFilme = minhaLista.some((filmesSalvo) => filmesSalvo.id === filme[0].id);
 
     if (hasFilme) {
-      toast.error("Esse filme ja está na lista");
+      toast.error("Essa série ja está na lista");
       return;
     }
-
-    //console.log(minhaLista);
-    minhaLista.push(filme[0]);
+    let list = {
+      ...filme[0],
+      type: "serie",
+    };
+    minhaLista.push(list);
     localStorage.setItem("@primeflix", JSON.stringify(minhaLista));
     toast.success("Série salva com sucesso!");
   }
@@ -103,8 +107,7 @@ function Series() {
                       {seasons?.map((item) => {
                         return (
                           <option key={item.id} value={item.season_number}>
-                            {Number(item.season_number) + 1}
-                            ° Temporada
+                            {item.name}
                           </option>
                         );
                       })}
@@ -134,9 +137,9 @@ function Series() {
                 <h3>Sinopse</h3>
                 <span>{item.overview}</span>
                 <span>{item.imdb_id}</span>
+                <span>Lançamento: {dayjs(item.release_date).format("DD/MM/YYYY")}</span>
 
                 <strong>Avalição: {item.vote_average} / 10</strong>
-                <br></br>
 
                 <div className="btn-area">
                   <button className="Salvar" onClick={salvarFilme}>

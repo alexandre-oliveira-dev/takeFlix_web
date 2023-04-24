@@ -4,6 +4,7 @@ import "./filme.css";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
+import dayjs from "dayjs";
 
 function Series() {
   const { idfilme } = useParams();
@@ -21,6 +22,7 @@ function Series() {
           //setDiretores(response.data.created_by)
           setLoading(false);
           //console.log(response.data);
+          document.title = response.data.title;
         })
         .catch(() => {
           console.log("FILME NAO ENCONTRADo");
@@ -52,9 +54,11 @@ function Series() {
       toast.error("Esse filme ja está na lista");
       return;
     }
-
-    //console.log(minhaLista);
-    minhaLista.push(filme[0]);
+    let list = {
+      ...filme[0],
+      type: "filme",
+    };
+    minhaLista.push(list);
     localStorage.setItem("@primeflix", JSON.stringify(minhaLista));
     toast.success("Filme salvo com sucesso!");
   }
@@ -92,15 +96,12 @@ function Series() {
               <div className="info-text">
                 <h3>Sinopse</h3>
                 <span>{item.overview}</span>
-                <span>Lançamento: {item.release_date}</span>
+                <span>Lançamento: {dayjs(item.release_date).format("DD/MM/YYYY")}</span>
                 <span>Duração: {item.runtime} min</span>
 
                 <strong>
-                  Avalição: {item.vote_average} / 10 - {item.vote_count} avaliações
+                  Avalição: {item.vote_average} / 10 - {item.vote_count} avaliações 🌟
                 </strong>
-
-                <strong>Avalição: {item.vote_average} / 10</strong>
-                <br></br>
 
                 <div className="btn-area">
                   <button className="Salvar" onClick={salvarFilme}>

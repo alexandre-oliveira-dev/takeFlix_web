@@ -140,5 +140,11 @@
   .filme-info .poster{
     width: auto !important;
   }
+  .filme-info{
+    gap: 0;
+  }
+  #EmbedderContainer{
+    height: 150px;
+  }
 
 }

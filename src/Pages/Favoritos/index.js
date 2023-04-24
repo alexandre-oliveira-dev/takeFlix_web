@@ -45,11 +45,15 @@ function Favoritos() {
                     src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                     alt={item.title}
                   />
-                  <span>{item.title}</span>
+                  {item.type == "filme" ? <span>{item.title}</span> : <span>{item.name}</span>}
                   <span>Avaliação: {item.vote_average}</span>
                 </div>
                 <div className="btn-area2">
-                  <Link to={`/filme/${item.id}`}>Ver detalhes</Link>
+                  {item.type == "filme" ? (
+                    <Link to={`/filme/${item.id}`}>Ver detalhes</Link>
+                  ) : (
+                    <Link to={`/serie/${item.id}`}>Ver detalhes</Link>
+                  )}
                   <button onClick={() => excluir(item.id)}>Excluir</button>
                 </div>
               </li>
