@@ -21,20 +21,16 @@ function Series() {
           setFilme([response.data]);
           //setDiretores(response.data.created_by)
           setLoading(false);
-          //console.log(response.data);
+          console.log(response.data);
           document.title = response.data.title;
         })
         .catch(() => {
           console.log("FILME NAO ENCONTRADo");
         });
     }
+    setUrl(`https://embedder.net/e/movie?tmdb=${idfilme}`);
 
     loadFilme();
-
-    //console.log(diretores.map(item => item.name))
-
-    // console.log(url);
-    setUrl(`https://embedder.net/e/movie?tmdb=${idfilme}`);
   }, []);
 
   if (loading) {
@@ -91,6 +87,23 @@ function Series() {
                     allowfullscreen="allowfullscreen"
                     frameborder="0"
                   ></iframe>
+                  <div className="boxPlayers">
+                    <p>Players disponíveis:</p>
+                    <button
+                      onClick={() => {
+                        setUrl(`https://embedder.net/e/movie?tmdb=${idfilme}`);
+                      }}
+                    >
+                      Player 1
+                    </button>
+                    <button
+                      onClick={() => {
+                        setUrl(`https://embed.warezcdn.com/filme/${item.imdb_id}`);
+                      }}
+                    >
+                      Player 2 (contém mais anuncios)
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="info-text">

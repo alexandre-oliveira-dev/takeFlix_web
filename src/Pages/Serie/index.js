@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./filme.css";
+import "./serie.css";
 import "../Filme/filme.css";
 import api from "../../services/api";
 import { toast } from "react-toastify";
@@ -14,8 +14,9 @@ function Series() {
   const [loading, setLoading] = useState(true);
   const [url, setUrl] = useState("");
   const [seasons, setSeasons] = useState([]);
-  const [seasonsnumber, setSeasonsnumber] = useState();
+  const [seasonsnumber, setSeasonsnumber] = useState(1);
   const [ep, setEp] = useState([]);
+  const [epnumber, setEpnumber] = useState(1);
 
   useEffect(() => {
     async function loadFilme() {
@@ -27,7 +28,7 @@ function Series() {
           setLoading(false);
           setSeasons(response.data.seasons);
           document.title = response.data.name;
-          //console.log(response.data);
+          console.log(response.data);
         })
         .catch(() => {
           console.log("FILME NAO ENCONTRADo");
@@ -83,16 +84,34 @@ function Series() {
                   alt={item.title}
                 />
                 <div className="boxVideo">
-                  {
-                    <iframe
-                      id="EmbedderContainer"
-                      src={url}
-                      width="100%"
-                      height={window.screen.width > 500 ? "350px" : "300px"}
-                      allowfullscreen="allowfullscreen"
-                      frameborder="0"
-                    ></iframe>
-                  }
+                  <iframe
+                    id="EmbedderContainer"
+                    src={url}
+                    width="100%"
+                    height={window.screen.width > 500 ? "350px" : "300px"}
+                    allowfullscreen="allowfullscreen"
+                    frameborder="0"
+                  ></iframe>
+                  {/* <div className="boxPlayers">
+                    <p>Players disponíveis:</p>
+                    <button
+                      onClick={() => {
+                        setUrl(`https://embedder.net/e/serie?tmdb=${idserie}`);
+                      }}
+                    >
+                      Player 1
+                    </button>
+                    <button
+                      onClick={() => {
+                        setUrl(
+                          `https://embed.warezcdn.com/serie/${item.imdb_id}/${seasonsnumber}/${epnumber}`
+                        );
+                      }}
+                    >
+                      Player 2 (contém mais anuncios)
+                    </button>
+                    </div>*/}
+
                   <div className="selectSeasonandEp">
                     <select
                       onChange={async (e) => {
@@ -118,6 +137,7 @@ function Series() {
                           setUrl(
                             `https://embedder.net/e/series?tmdb=${idserie}&sea=${seasonsnumber}&epi=${e.target.value}`
                           );
+                          setEpnumber(e.target.value);
                         }}
                       >
                         <option>Escolha o episodio</option>
