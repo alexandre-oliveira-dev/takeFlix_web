@@ -17,6 +17,7 @@ function Series() {
   const [seasonsnumber, setSeasonsnumber] = useState(1);
   const [ep, setEp] = useState([]);
   const [epnumber, setEpnumber] = useState(1);
+  const [imdbid, setImdbId] = useState();
 
   useEffect(() => {
     async function loadFilme() {
@@ -33,6 +34,10 @@ function Series() {
         .catch(() => {
           console.log("FILME NAO ENCONTRADo");
         });
+
+      await api.get(`/tv/${idserie}/external_ids`).then((value) => {
+        setImdbId(value.data.imdb_id);
+      });
     }
     loadFilme();
     setUrl(`https://embedder.net/e/series?tmdb=${idserie}&sea=${1}&epi=${1}`);
@@ -92,65 +97,70 @@ function Series() {
                     allowfullscreen="allowfullscreen"
                     frameborder="0"
                   ></iframe>
-                  {/* <div className="boxPlayers">
-                    <p>Players disponíveis:</p>
-                    <button
-                      onClick={() => {
-                        setUrl(`https://embedder.net/e/serie?tmdb=${idserie}`);
-                      }}
-                    >
-                      Player 1
-                    </button>
-                    <button
-                      onClick={() => {
-                        setUrl(
-                          `https://embed.warezcdn.com/serie/${item.imdb_id}/${seasonsnumber}/${epnumber}`
-                        );
-                      }}
-                    >
-                      Player 2 (contém mais anuncios)
-                    </button>
-                    </div>*/}
-
-                  <div className="selectSeasonandEp">
-                    <select
-                      onChange={async (e) => {
-                        await api.get(`/tv/${idserie}/season/${e.target.value}`).then((value) => {
-                          setEp(value.data.episodes);
-                          // console.log(ep);
-                        });
-                        setSeasonsnumber(e.target.value);
-                      }}
-                    >
-                      <option>Escolha a temporada</option>
-                      {seasons?.map((item) => {
-                        return (
-                          <option key={item.id} value={item.season_number}>
-                            {item.name}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    {ep !== "[]" && (
-                      <select
-                        onChange={(e) => {
-                          setUrl(
-                            `https://embedder.net/e/series?tmdb=${idserie}&sea=${seasonsnumber}&epi=${e.target.value}`
-                          );
-                          setEpnumber(e.target.value);
+                  {
+                    <div className="boxPlayers">
+                      <p>Players disponíveis:</p>
+                      <button
+                        onClick={() => {
+                          setUrl(`https://embedder.net/e/serie?tmdb=${idserie}`);
                         }}
                       >
-                        <option>Escolha o episodio</option>
-                        {ep.map((item) => {
-                          return (
-                            <option key={item.id} value={item.episode_number}>
-                              {item.episode_number} - {item.name}
-                            </option>
+                        Player 1
+                      </button>
+                      <div className="selectSeasonandEp">
+                        <select
+                          onChange={async (e) => {
+                            await api
+                              .get(`/tv/${idserie}/season/${e.target.value}`)
+                              .then((value) => {
+                                setEp(value.data.episodes);
+                                // console.log(ep);
+                              });
+                            setSeasonsnumber(e.target.value);
+                          }}
+                        >
+                          <option>Escolha a temporada</option>
+                          {seasons?.map((item) => {
+                            return (
+                              <option key={item.id} value={item.season_number}>
+                                {item.name}
+                              </option>
+                            );
+                          })}
+                        </select>
+                        {ep !== "[]" && (
+                          <select
+                            onChange={(e) => {
+                              setUrl(
+                                `https://embedder.net/e/series?tmdb=${idserie}&sea=${seasonsnumber}&epi=${e.target.value}`
+                              );
+                              setEpnumber(e.target.value);
+                            }}
+                          >
+                            <option>Escolha o episodio</option>
+                            {ep.map((item) => {
+                              return (
+                                <option key={item.id} value={item.episode_number}>
+                                  {item.episode_number} - {item.name}
+                                </option>
+                              );
+                            })}
+                          </select>
+                        )}
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          setUrl(
+                            `https://embed.warezcdn.com/serie/${imdbid}/${seasonsnumber}/${epnumber}`
                           );
-                        })}
-                      </select>
-                    )}
-                  </div>
+                        }}
+                      >
+                        Player 2 (contém mais anuncios)
+                      </button>
+
+                    </div>
+                  }
                 </div>
               </div>
               <div className="info-text">

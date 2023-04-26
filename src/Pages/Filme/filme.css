@@ -164,5 +164,7 @@
   #EmbedderContainer{
     height: 150px;
   }
-
+.boxPlayers{
+  flex-direction: column;
+}
 }
