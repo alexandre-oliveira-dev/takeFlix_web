@@ -11,7 +11,7 @@
     z-index: 1;
     object-fit: cover;
     background-size: cover;
-    position: relative;
+    position: absolute;
 }
 
 .title {
@@ -97,6 +97,7 @@
     width: 100%;
     height: auto;
     background-color: #2d2d2d;
+    margin-top: calc(100vh - 70px);
 }
 
 .container-lista-filmes {

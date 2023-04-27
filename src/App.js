@@ -4,6 +4,7 @@ import RoutesApp from './services/router'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <BrowserRouter>
         <ToastContainer autoClose={3000}></ToastContainer>
         <RoutesApp></RoutesApp>
+      <Footer></Footer>
       </BrowserRouter>
+
     </div>
   )
 }

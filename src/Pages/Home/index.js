@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import {useMemo, useState } from "react";
 import api from "../../services/api";
 import "../../App.css";
 import { toast } from "react-toastify";
@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import "./style.css";
 import Title from "../../components/Title";
 import { useParams } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 function Home() {
   const [filmes, setFilmes] = useState([]);
@@ -76,7 +77,7 @@ function Home() {
 
   return (
     <div className="container-home">
-      <Header></Header>
+      <Header color="transparent"></Header>
 
       <section className="section-1">
         <div className="title">
@@ -117,6 +118,7 @@ function Home() {
         </div>
         <div className="banner-filme-cartaz">
           <img
+            alt="banner"
             onClick={() => (window.location.href = `/filme/${filmes.map((item) => item.id)[0]}`)}
             src={`https://image.tmdb.org/t/p/original/${filmes.map((item) => item.poster_path)[0]}`}
           ></img>
@@ -132,6 +134,7 @@ function Home() {
               <div key={item.id}>
                 <div className="item-filme">
                   <img
+                    alt="banner"
                     onClick={() => (window.location.href = `/filme/${item.id}`)}
                     src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                   ></img>
@@ -146,6 +149,7 @@ function Home() {
               <div key={item.id}>
                 <div className="item-filme">
                   <img
+                    alt="banner"
                     onClick={() => (window.location.href = `/filme/${item.id}`)}
                     src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                   ></img>
@@ -155,7 +159,7 @@ function Home() {
           })}
         </div>
 
-        <Title color="#fff" texto="Series - Ultimos lançamentos"></Title>
+        <Title color="#fff" texto="Series"></Title>
         <div className="container-lista-filmes">
           {series.map((item) => {
             return (
@@ -164,6 +168,7 @@ function Home() {
                   <img
                     onClick={() => (window.location.href = `/serie/${item.id}`)}
                     src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    alt="banner"
                   ></img>
                 </div>
               </div>
@@ -176,6 +181,7 @@ function Home() {
               <div key={item.id}>
                 <div className="item-filme">
                   <img
+                    alt="banner"
                     onClick={() => (window.location.href = `/serie/${item.id}`)}
                     src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                   ></img>

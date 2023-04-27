@@ -5,8 +5,10 @@ const Title = (props) => {
     <div
       style={{
         width: "100%",
+        height:"100px",
         display: "flex",
         justifyContent: "center",
+        alignItems:"center",
         position: "relative",
       }}
     >
