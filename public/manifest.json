@@ -1,6 +1,7 @@
 {
   "short_name": "TFlix",
   "name": "TakeFlix",
+  "description": "Assista filmes e séries online com o TakeFlix",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,5 +22,35 @@
   "start_url": "",
   "display": "standalone",
   "theme_color": "#2d2d2d",
-  "background_color": "#2d2d2d"
+  "background_color": "#2d2d2d",
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://takeflix.com"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Assistir Filmes",
+      "short_name": "Filmes",
+      "url": "/filmes/",
+      "icons": [
+        {
+          "src": "icons/filmes.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Assistir Séries",
+      "short_name": "Séries",
+      "url": "/series/",
+      "icons": [
+        {
+          "src": "icons/series.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 }
