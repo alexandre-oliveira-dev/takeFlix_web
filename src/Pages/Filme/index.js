@@ -61,7 +61,7 @@ function Series() {
 
   return (
     <>
-      <Header color='#2d2d2d'></Header>
+      <Header color="#2d2d2d"></Header>
       <div className="filme-info">
         {filme.map((item) => {
           return (
@@ -79,14 +79,26 @@ function Series() {
                   alt={item.title}
                 />
                 <div className="boxVideo">
-                  <iframe
-                    id="EmbedderContainer"
-                    src={url}
-                    width="100%"
-                    height={window.screen.width > 500 ? "330px" : "300px"}
-                    allowfullscreen="allowfullscreen"
-                    frameborder="0"
-                  ></iframe>
+                  <div
+                    style={
+                      window.screen.width < 500
+                        ? {
+                            width: "100%",
+                            height: "260px",
+                            overflowY: "auto",
+                          }
+                        : { width: "100%" }
+                    }
+                  >
+                    <iframe
+                      id="EmbedderContainer"
+                      src={url}
+                      width="100%"
+                      height={window.screen.width > 500 ? "350px" : "300px"}
+                      allowfullscreen="allowfullscreen"
+                      frameborder="0"
+                    ></iframe>
+                  </div>
                   <div className="boxPlayers">
                     <p>Players disponíveis:</p>
                     <button

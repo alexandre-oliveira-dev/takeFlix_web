@@ -110,3 +110,10 @@
     border-radius: 10px;
     
 }
+
+@media(max-width:500px){
+    .info-text{
+        text-align: center;
+        align-items: center;
+    }
+}

@@ -105,13 +105,14 @@
   flex-direction: column;
 }
 
-.boxPlayers{
+.boxPlayers {
   color: #fff;
   display: flex;
   gap: 10px;
   align-items: center;
 }
-.boxPlayers button{
+
+.boxPlayers button {
   width: auto;
   padding: 10px;
   height: 30px;
@@ -150,21 +151,29 @@
     width: 100% !important;
     margin-top: 20px;
   }
-  .info-text{
+
+  .info-text {
     background-color: #2d2d2d;
     width: 100% !important;
     padding: 10px;
+    text-align: center;
+    align-items: center;
   }
-  .filme-info .poster{
+
+  .filme-info .poster {
     width: auto !important;
+
   }
-  .filme-info{
+
+  .filme-info {
     gap: 0;
   }
-  #EmbedderContainer{
-    height: 150px;
+
+  #EmbedderContainer {
+    height: 400px;
   }
-.boxPlayers{
-  flex-direction: column;
-}
+
+  .boxPlayers {
+    flex-direction: column;
+  }
 }
