@@ -14,6 +14,11 @@ const Cadastro = () => {
   async function handleSingUp(e) {
     e.preventDefault();
     setLoad(true);
+    if (!name || !email || !password) {
+      document.getElementById("error").innerText = "Preencha todos os dados!";
+      document.getElementById("error").setAttribute("style", "color:red");
+      return;
+    }
 
     const data = {
       name: name,
@@ -38,7 +43,7 @@ const Cadastro = () => {
       <div className="box-area-form">
         <form className="form" onSubmit={(e) => handleSingUp(e)}>
           <Title texto="Cadastre-se" color="#121212"></Title>
-          <p>🖤Obtenha informações atualizadas de Filmes e Séries </p>
+          <p>🖤Assista Filmes e Séries Grátis!</p>
           <input type={"text"} onChange={(e) => setName(e.target.value)} placeholder="Nome"></input>
           <input
             type={"text"}
@@ -59,6 +64,7 @@ const Cadastro = () => {
           <button type="submit" disabled={load}>
             {load ? "Aguarde..." : "Cadastrar"}
           </button>
+          <span id="error"></span>
           <a href="/login">Já possui cadastro?, login.</a>
         </form>
       </div>
