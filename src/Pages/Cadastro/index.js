@@ -56,7 +56,9 @@ const Cadastro = () => {
             placeholder="Senha"
           ></input>
 
-          <button type="submit">{load ? "Aguarde..." : "Cadastrar"}</button>
+          <button type="submit" disabled={load}>
+            {load ? "Aguarde..." : "Cadastrar"}
+          </button>
           <a href="/login">Já possui cadastro?, login.</a>
         </form>
       </div>
