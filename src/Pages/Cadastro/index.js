@@ -17,6 +17,7 @@ const Cadastro = () => {
     if (!name || !email || !password) {
       document.getElementById("error").innerText = "Preencha todos os dados!";
       document.getElementById("error").setAttribute("style", "color:red");
+      setLoad(false)
       return;
     }
 
