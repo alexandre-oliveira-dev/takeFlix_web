@@ -9,9 +9,11 @@ const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [telefone, setTelefone] = useState("");
   const [password, setPassword] = useState("");
+  const [load, setLoad] = useState(false);
 
   async function handleSingUp(e) {
     e.preventDefault();
+    setLoad(true);
 
     const data = {
       name: name,
@@ -23,6 +25,7 @@ const Cadastro = () => {
     await takeFlixApi
       .post("/users", data)
       .then(() => {
+        setLoad(false);
         window.location.href = "/login";
       })
       .catch((error) => {
@@ -53,7 +56,7 @@ const Cadastro = () => {
             placeholder="Senha"
           ></input>
 
-          <button type="submit">Cadastrar</button>
+          <button type="submit">{load ? "Aguarde..." : "Cadastrar"}</button>
           <a href="/login">Já possui cadastro?, login.</a>
         </form>
       </div>
