@@ -1,6 +1,16 @@
+import { useEffect, useState } from "react";
 import "./header.css";
+import { FiMenu, FiUser } from "react-icons/fi";
 
 function Header(props) {
+  const [user, setUser] = useState();
+  useEffect(() => {
+    const localstorage = JSON.parse(localStorage.getItem("@tokenTakeflix")) || "[]";
+    setUser(localstorage);
+
+    console.log(localstorage);
+  }, []);
+
   return (
     <header style={{ background: props.color }} className="header">
       <div className="logo" onClick={() => (window.location.href = "/")}>
@@ -24,14 +34,81 @@ function Header(props) {
         </div>
       </div>
 
-      <div className="login-area-user">
+      <button
+        id="btnmobilemenu"
+        onClick={() => {
+          document.querySelector(".navBarMobile").classList.toggle("navBarMobileshow");
+        }}
+      >
+        <FiMenu color="#fff" size={25}></FiMenu>
+      </button>
+
+      <div className="navBarMobile">
+        {user !== "[]" ? (
+          <>
+            <label>
+              <FiUser color="#fff"></FiUser>olá {user?.email}
+            </label>
+            <button
+              id="sair"
+              onClick={() => {
+                localStorage.removeItem("@tokenTakeflix");
+                window.location.href = "/";
+              }}
+            >
+              sair
+            </button>
+          </>
+        ) : (
+          <>
+            <div>
+              <button onClick={() => (window.location.href = "/login")}>Login</button>
+            </div>
+            <div>
+              <button onClick={() => (window.location.href = "/cadastro")}>Cadastre-se</button>
+            </div>
+          </>
+        )}
+        <br></br>
         <div>
-          <button>Login</button>
+          <button onClick={() => (window.location.href = "/page/1")}>Home</button>
         </div>
         <div>
-          <button onClick={() => (window.location.href = "/cadastro")}>Cadastre-se</button>
+          <button onClick={() => (window.location.href = "/filmes/page/1")}>Filmes</button>
+        </div>
+        <div>
+          <button onClick={() => (window.location.href = "/series/page/1")}>Séries</button>
+        </div>
+        <div>
+          <button onClick={() => (window.location.href = "/favoritos")}>Favoritos</button>
         </div>
       </div>
+
+      {user !== "[]" ? (
+        <div className="userinfo">
+          <label>
+            <FiUser color="#fff"></FiUser>olá {user?.email}
+          </label>
+          <button
+            id="sair"
+            onClick={() => {
+              localStorage.removeItem("@tokenTakeflix");
+              window.location.href = "/";
+            }}
+          >
+            sair
+          </button>
+        </div>
+      ) : (
+        <div className="login-area-user">
+          <div>
+            <button onClick={() => (window.location.href = "/login")}>Login</button>
+          </div>
+          <div>
+            <button onClick={() => (window.location.href = "/cadastro")}>Cadastre-se</button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
