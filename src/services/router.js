@@ -11,6 +11,7 @@ import FilmesPornome from "../Pages/Filmes/FilmesPorNome/index";
 import SeriesPorGenero from "../Pages/Series/SeriesPorGenero";
 import SeriesPornome from "../Pages/Series/SeriesPorNome";
 import Series from "../Pages/Series";
+import Login from "../Pages/Login";
 
 function RoutesApp() {
   return (
@@ -21,6 +22,7 @@ function RoutesApp() {
       <Route path="/serie/:idserie" component={Serie}></Route>
       <Route path="/favoritos/" component={Favoritos}></Route>
       <Route path="/cadastro" component={Cadastro}></Route>
+      <Route path="/login" component={Login}></Route>
       <Route path="/filmes/page/:number" component={Filmes}></Route>
       <Route path="/series/page/:number" component={Series}></Route>
       <Route path="/filmes/genero/:genero/page/:number" component={FilmesGenero}></Route>

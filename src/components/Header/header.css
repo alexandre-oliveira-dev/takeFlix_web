@@ -1,5 +1,3 @@
-
-
 .header {
     width: 100%;
     height: 70px;
@@ -56,7 +54,7 @@
 }
 
 .login-area-user {
-    display: none;
+    display: flex;
     align-items: center;
     gap: 20px;
 }
@@ -68,6 +66,16 @@
     color: white;
     cursor: pointer;
 
+}
+
+.userinfo {
+    color: #fff;
+    font-size: 17px ;
+}
+#sair{
+    background-color: transparent;
+    color: red;
+    margin-left: 10px;
 }
 
 @media(max-width:500px) {

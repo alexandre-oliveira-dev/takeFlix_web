@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import "./header.css";
+import { FiUser } from "react-icons/fi";
 
 function Header(props) {
+  const [user, setUser] = useState();
+  useEffect(() => {
+    const localstorage = JSON.parse(localStorage.getItem("@tokenTakeflix")) || '[]';
+    setUser(localstorage);
+
+    console.log(localstorage)
+  }, []);
+
+
   return (
     <header style={{ background: props.color }} className="header">
       <div className="logo" onClick={() => (window.location.href = "/")}>
@@ -24,14 +35,31 @@ function Header(props) {
         </div>
       </div>
 
-      <div className="login-area-user">
-        <div>
-          <button>Login</button>
+      {user ? (
+        <div className="userinfo">
+          <label>
+            <FiUser color="#fff"></FiUser>olá {user?.name}
+          </label>
+          <button
+            id="sair"
+            onClick={() => {
+              localStorage.removeItem("@tokenTakeflix");
+              window.location.href = "/";
+            }}
+          >
+            sair
+          </button>
         </div>
-        <div>
-          <button onClick={() => (window.location.href = "/cadastro")}>Cadastre-se</button>
+      ) : (
+        <div className="login-area-user">
+          <div>
+            <button onClick={() => (window.location.href = "/login")}>Login</button>
+          </div>
+          <div>
+            <button onClick={() => (window.location.href = "/cadastro")}>Cadastre-se</button>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
