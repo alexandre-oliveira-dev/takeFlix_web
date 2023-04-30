@@ -125,6 +125,25 @@
   align-items: center;
 }
 
+.boxinfoplayers {
+  position: relative;
+  transition: all 0.4s ease;
+
+}
+
+.boxinfoplayers .textinfoplayer {
+  display: none;
+  position: absolute;
+  width: 400px;
+  height: auto;
+  padding: 20px;
+  background-color: #ffffffa9;
+  color: #2d2d2d;
+  border-radius: 10px;
+  margin-top: 10px;
+  backdrop-filter: blur(10px);
+}
+
 @media (max-width: 500px) {
   .box-info-filme {
     flex-direction: column;
@@ -175,5 +194,20 @@
 
   .boxPlayers {
     flex-direction: column;
+  }
+  .boxinfoplayers {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .boxinfoplayers .textinfoplayer{
+    width: 100%;
+  
+  }
+  .boxinfoplayers button{
+    background-color: red;
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px;
   }
 }

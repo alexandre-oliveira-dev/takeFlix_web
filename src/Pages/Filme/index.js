@@ -5,6 +5,7 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
 import dayjs from "dayjs";
+import Title from "../../components/Title";
 
 function Series() {
   const { idfilme } = useParams();
@@ -61,8 +62,7 @@ function Series() {
 
   return (
     <>
-      <Header color="dimgrey" margin="0"
-      ></Header>
+      <Header color="#1d1d1d" margin="0"></Header>
       <div className="filme-info">
         {filme.map((item) => {
           return (
@@ -116,10 +116,68 @@ function Series() {
                     >
                       Player 2 (contém mais anuncios)
                     </button>
+                    {window.screen.width > 500 && (
+                      <div className="boxinfoplayers">
+                        <button
+                          type="button"
+                          onMouseEnter={() =>
+                            document
+                              .querySelector(".textinfoplayer")
+                              .setAttribute("style", "display:block")
+                          }
+                          onMouseLeave={() =>
+                            document
+                              .querySelector(".textinfoplayer")
+                              .setAttribute("style", "display:none")
+                          }
+                        >
+                          Informações ℹ️
+                        </button>
+                        <div className="textinfoplayer">
+                          <h3>Informações</h3>
+                          <ul>
+                            <li>O Player 1 é o melhor com apenas 1 anuncio </li>
+                            <li>
+                              No Player 2 a melhor opção é a primeira, contém 5 anuncios na média.
+                            </li>
+                            <li>Caso nenhum esteja disponivel tente novamente mais tarde.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
               <div className="info-text">
+                {window.screen.width < 500 && (
+                  <div className="boxinfoplayers">
+                    <button
+                      type="button"
+                      onMouseEnter={() =>
+                        document
+                          .querySelector(".textinfoplayer")
+                          .setAttribute("style", "display:block")
+                      }
+                      onMouseLeave={() =>
+                        document
+                          .querySelector(".textinfoplayer")
+                          .setAttribute("style", "display:none")
+                      }
+                    >
+                      Informações ℹ️
+                    </button>
+                    <div className="textinfoplayer">
+                      <h3>Informações</h3>
+                      <ul>
+                        <li>O Player 1 é o melhor com apenas 1 anuncio </li>
+                        <li>
+                          No Player 2 a melhor opção é a primeira, contém 5 anuncios na média.
+                        </li>
+                        <li>Caso nenhum esteja disponivel tente novamente mais tarde.</li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
                 <h3>Sinopse</h3>
                 <span>{item.overview}</span>
                 <span>Lançamento: {dayjs(item.release_date).format("DD/MM/YYYY")}</span>

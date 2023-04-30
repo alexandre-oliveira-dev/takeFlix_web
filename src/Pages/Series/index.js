@@ -41,7 +41,7 @@ export default function Filmes() {
 
   return (
     <div className="containerPageFilmes">
-      <Header color='dimgray'></Header>
+      <Header color='#1d1d1d'></Header>
       <BoxSearchSeries></BoxSearchSeries>
       <section className="containerListFilms">
    

@@ -40,7 +40,7 @@ const Cadastro = () => {
   }
   return (
     <div className="containercadastro">
-      <Header color="dimgrey"></Header>
+      <Header color="#1d1d1d"></Header>
       <div className="box-area-form">
         <form className="form" onSubmit={(e) => handleSingUp(e)}>
           <Title texto="Cadastre-se" color="#fff"></Title>

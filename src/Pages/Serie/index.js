@@ -71,7 +71,7 @@ function Series() {
 
   return (
     <>
-      <Header color="dimgrey" margin='0'></Header>
+      <Header color="#1d1d1d" margin="0"></Header>
       <div className="filme-info">
         {filme.map((item) => {
           return (
