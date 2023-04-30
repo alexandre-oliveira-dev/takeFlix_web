@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./style.css";
+import "../Cadastro/style.css";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
 import takeFlixApi from "../../services/takeFlixApi";
@@ -11,10 +11,15 @@ const Cadastro = () => {
 
   async function handleSingin(e) {
     e.preventDefault();
+    if (!email || !password) {
+      document.getElementById("error").innerText = "Preencha os campos!";
+      document.getElementById("error").setAttribute("style", "color:#2d2d2d");
+      return;
+    }
     setLoad(true);
 
     const data = {
-      email: email,
+      email: email.toLowerCase(),
       password: password,
     };
 
@@ -26,10 +31,10 @@ const Cadastro = () => {
         window.location.href = "/";
       })
       .catch((error) => {
-        setLoad(false)
+        setLoad(false);
         console.log(error);
         document.getElementById("error").innerText = "Dados invalidos ou não cadastrados!";
-        document.getElementById("error").setAttribute("style", "color:red");
+        document.getElementById("error").setAttribute("style", "color:#2d2d2d");
         setTimeout(() => {
           document.getElementById("error").setAttribute("style", "display:none");
         }, 2000);
@@ -37,23 +42,27 @@ const Cadastro = () => {
   }
   return (
     <div className="containercadastro">
-      <Header></Header>
+      <Header color="dimgrey"></Header>
       <div className="box-area-form">
         <form className="form" onSubmit={(e) => handleSingin(e)}>
-          <Title texto="Entrar" color="#121212"></Title>
+          <Title texto="Entrar" color="#fff"></Title>
           <p>🖤 TakeFlix Filmes e séries online grátis! </p>
           <input
             type={"text"}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail"
+            name="email"
           ></input>
           <input
-            type={"text"}
+            type={"password"}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha"
+            name="password"
           ></input>
 
-          <button type="submit">{load ? 'Entrando...' : 'Entrar'}</button>
+          <button disabled={load} type="submit">
+            {load ? <span id="loadspan">Entrando...</span> : "Entrar"}
+          </button>
           <span id="error"></span>
           <a href="/cadastro">Não possui cadastro?, cadatre-se</a>
         </form>

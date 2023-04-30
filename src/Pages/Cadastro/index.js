@@ -16,8 +16,8 @@ const Cadastro = () => {
     setLoad(true);
     if (!name || !email || !password) {
       document.getElementById("error").innerText = "Preencha todos os dados!";
-      document.getElementById("error").setAttribute("style", "color:red");
-      setLoad(false)
+      document.getElementById("error").setAttribute("style", "color:#2d2d2d");
+      setLoad(false);
       return;
     }
 
@@ -40,30 +40,33 @@ const Cadastro = () => {
   }
   return (
     <div className="containercadastro">
-      <Header></Header>
+      <Header color="dimgrey"></Header>
       <div className="box-area-form">
         <form className="form" onSubmit={(e) => handleSingUp(e)}>
-          <Title texto="Cadastre-se" color="#121212"></Title>
+          <Title texto="Cadastre-se" color="#fff"></Title>
           <p>🖤Assista Filmes e Séries Grátis!</p>
           <input type={"text"} onChange={(e) => setName(e.target.value)} placeholder="Nome"></input>
           <input
             type={"text"}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail"
+            name="email"
           ></input>
           <input
             type={"text"}
             onChange={(e) => setTelefone(e.target.value)}
             placeholder="Telefone"
+            name="telefone"
           ></input>
           <input
             type={"text"}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha"
+            name="password"
           ></input>
 
           <button type="submit" disabled={load}>
-            {load ? "Aguarde..." : "Cadastrar"}
+            {load ? <span id="loadspan">Aguarde...</span> : "Cadastrar"}
           </button>
           <span id="error"></span>
           <a href="/login">Já possui cadastro?, login.</a>

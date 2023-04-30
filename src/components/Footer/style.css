@@ -3,8 +3,9 @@
     min-height: 200px;
     background-color: #2d2d2d;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-evenly;
+    padding: 20px;
 }
 
 .boxButtons{
@@ -33,6 +34,7 @@
         height: auto;
         padding: 20px;
         gap: 20px;
+        align-items: center;
     }
     .boxButtons{
         text-align: center;

@@ -71,7 +71,7 @@ function Series() {
 
   return (
     <>
-      <Header color="#2d2d2d"></Header>
+      <Header color="dimgrey" margin='0'></Header>
       <div className="filme-info">
         {filme.map((item) => {
           return (
@@ -90,7 +90,7 @@ function Series() {
                 />
                 <div className="boxVideo">
                   <div
-                     style={
+                    style={
                       window.screen.width < 500
                         ? {
                             width: "100%",
@@ -114,7 +114,7 @@ function Series() {
                       <p>Players disponíveis:</p>
                       <button
                         onClick={() => {
-                          setUrl(`https://embedder.net/e/serie?tmdb=${idserie}`);
+                          setUrl(`https://embedder.net/e/series?tmdb=${idserie}&sea=${1}&epi=${1}`);
                           document
                             .querySelector(".selectSeasonandEp")
                             .setAttribute("style", "display:flex");

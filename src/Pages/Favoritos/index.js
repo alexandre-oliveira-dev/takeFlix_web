@@ -25,7 +25,7 @@ function Favoritos() {
 
   return (
     <div className="meus-filmes">
-      <Header color='#2d2d2d'></Header>
+      <Header color="dimgrey"></Header>
       <h2 className="titleGenere">Meus Favoritos</h2>
       <ul
         style={{

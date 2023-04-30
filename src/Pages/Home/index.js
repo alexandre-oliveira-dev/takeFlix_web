@@ -6,7 +6,7 @@ import Header from "../../components/Header";
 import "./style.css";
 import Title from "../../components/Title";
 import { useParams } from "react-router-dom";
-import Footer from "../../components/Footer";
+
 
 function Home() {
   const [filmes, setFilmes] = useState([]);

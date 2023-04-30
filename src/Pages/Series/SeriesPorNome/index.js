@@ -42,7 +42,7 @@ export default function FilmesPorGenero() {
 
   return (
     <div className="containerPageFilmes">
-      <Header color='#2d2d2d'></Header>
+      <Header color="dimgrey"></Header>
       <BoxSearchSeries></BoxSearchSeries>
 
       <section className="containerListFilms">
