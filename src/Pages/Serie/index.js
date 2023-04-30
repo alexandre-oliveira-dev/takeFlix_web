@@ -181,12 +181,40 @@ function Series() {
                 </div>
               </div>
               <div className="info-text">
+                {
+                  <div className="boxinfoplayers">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        document
+                          .querySelector(".textinfoplayer")
+                          .setAttribute("style", "display:block")
+                      }
+                      onMouseLeave={() =>
+                        document
+                          .querySelector(".textinfoplayer")
+                          .setAttribute("style", "display:none")
+                      }
+                    >
+                      Sobre os players! ℹ️
+                    </button>
+                    <div className="textinfoplayer">
+                      <h3>Sobre os players!</h3>
+                      <ul>
+                        <li>O Player 1 é o melhor com apenas 1 anuncio </li>
+                        <li>
+                          No Player 2 a melhor opção é a primeira, contém 5 anuncios na média.
+                        </li>
+                        <li>Caso nenhum esteja disponivel tente novamente mais tarde.</li>
+                      </ul>
+                    </div>
+                  </div>
+                }
                 <h3>Sinopse</h3>
                 <span>{item.overview}</span>
-                <span>{item.imdb_id}</span>
                 <span>Lançamento: {dayjs(item.release_date).format("DD/MM/YYYY")}</span>
 
-                <strong>Avalição: {item.vote_average} / 10</strong>
+                <strong>Avalição: {item.vote_average} / 10 🌟</strong>
 
                 <div className="btn-area">
                   <button className="Salvar" onClick={salvarFilme}>

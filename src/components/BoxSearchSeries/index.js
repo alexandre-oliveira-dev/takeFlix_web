@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { BsSearch } from "react-icons/bs";
 import "../../Pages/Filmes/style.css";
+import { useParams } from "react-router-dom";
 
 export default function BoxSearchSeries() {
   const [generes, setGeneres] = useState([]);
   const [nomefilme, setNomefilme] = useState("");
+
+  const { nomefilmeurl } = useParams();
 
   useEffect(() => {
     api

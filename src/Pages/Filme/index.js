@@ -120,7 +120,7 @@ function Series() {
                       <div className="boxinfoplayers">
                         <button
                           type="button"
-                          onMouseEnter={() =>
+                          onClick={() =>
                             document
                               .querySelector(".textinfoplayer")
                               .setAttribute("style", "display:block")
@@ -131,10 +131,10 @@ function Series() {
                               .setAttribute("style", "display:none")
                           }
                         >
-                          Informações ℹ️
+                          Sobre os players! ℹ️
                         </button>
                         <div className="textinfoplayer">
-                          <h3>Informações</h3>
+                          <h3>Sobre os players!</h3>
                           <ul>
                             <li>O Player 1 é o melhor com apenas 1 anuncio </li>
                             <li>
@@ -153,7 +153,7 @@ function Series() {
                   <div className="boxinfoplayers">
                     <button
                       type="button"
-                      onMouseEnter={() =>
+                      onClick={() =>
                         document
                           .querySelector(".textinfoplayer")
                           .setAttribute("style", "display:block")
@@ -164,10 +164,10 @@ function Series() {
                           .setAttribute("style", "display:none")
                       }
                     >
-                      Informações ℹ️
+                      Sobre os players! ℹ️
                     </button>
                     <div className="textinfoplayer">
-                      <h3>Informações</h3>
+                      <h3>Sobre os players!</h3>
                       <ul>
                         <li>O Player 1 é o melhor com apenas 1 anuncio </li>
                         <li>
