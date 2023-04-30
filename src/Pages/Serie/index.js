@@ -195,7 +195,7 @@ function Series() {
                   <a
                     target="blank"
                     rel="external"
-                    href={`https://youtube.com/results?search_query=${item.title} filme trailer`}
+                    href={`https://youtube.com/results?search_query=${item.name} serie trailer`}
                     className="trailer"
                   >
                     Trailer
