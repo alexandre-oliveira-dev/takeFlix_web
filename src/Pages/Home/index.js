@@ -1,18 +1,25 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import api from "../../services/api";
+import takeFlixApi from "../../services/takeFlixApi";
 import "../../App.css";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
 import "./style.css";
 import Title from "../../components/Title";
 import { useParams } from "react-router-dom";
-
+import Wellcome from "../../components/Wellcome";
 
 function Home() {
   const [filmes, setFilmes] = useState([]);
   const [filmes2, setFilmes2] = useState([]);
   const [series, setSeries] = useState([]);
   const [series2, setSeries2] = useState([]);
+  const [showmodal, setShowmodal] = useState(false);
+
+  useEffect(() => {
+    const istrue = JSON.parse(localStorage.getItem("@takeflixmodalremove"));
+    setShowmodal(istrue);
+  });
 
   const [totalPage, setTotalPage] = useState(0);
 
@@ -77,6 +84,8 @@ function Home() {
 
   return (
     <div className="container-home">
+      {!showmodal && <Wellcome></Wellcome>}
+
       <Header color="transparent"></Header>
 
       <section className="section-1">
@@ -97,22 +106,25 @@ function Home() {
                 Ver Trailer
               </a>
               <button
-                onClick={() => {
-                  const minhaLista = JSON.parse(localStorage.getItem("@primeflix")) || [];
-
-                  const hasFilme = minhaLista.some(
-                    (filmesSalvo) => filmesSalvo.id === filmes[0].id
-                  );
-
-                  if (hasFilme) {
-                    toast.error("Esse filme ja está na lista");
-                    return;
-                  }
-
-                  //console.log(minhaLista);
-                  minhaLista.push(filmes[0]);
-                  localStorage.setItem("@primeflix", JSON.stringify(minhaLista));
-                  toast.success("Filme salvo com sucesso!");
+                onClick={async () => {
+                  const user = JSON.parse(localStorage.getItem("@tokenTakeflix")) || [];
+                  const data = {
+                    title: String(filmes[0].title),
+                    imdid: String(filmes[0].id),
+                    avaliation: String(filmes[0].vote_average),
+                    type: "filme",
+                    usersId: String(user.id),
+                    poster_path: String(filmes[0].poster_path),
+                  };
+                  await takeFlixApi
+                    .post("/favoritos", data)
+                    .then(() => {
+                      toast.success("Filme salvo!");
+                    })
+                    .catch((error) => {
+                      toast.info("Essa série já está na lista!");
+                      console.log(error);
+                    });
                 }}
               >
                 Adicionar aos Favoritos

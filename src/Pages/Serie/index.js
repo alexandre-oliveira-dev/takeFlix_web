@@ -6,6 +6,7 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
 import dayjs from "dayjs";
+import takeFlixApi from "../../services/takeFlixApi";
 
 function Series() {
   const { idserie } = useParams();
@@ -51,22 +52,25 @@ function Series() {
     );
   }
 
-  function salvarFilme() {
-    const minhaLista = JSON.parse(localStorage.getItem("@primeflix")) || [];
-
-    const hasFilme = minhaLista.some((filmesSalvo) => filmesSalvo.id === filme[0].id);
-
-    if (hasFilme) {
-      toast.error("Essa série ja está na lista");
-      return;
-    }
-    let list = {
-      ...filme[0],
+  async function salvarFilme() {
+    const user = JSON.parse(localStorage.getItem("@tokenTakeflix")) || [];
+    const data = {
+      title: String(filme[0].name),
+      imdid: String(filme[0].id),
+      avaliation: String(filme[0].vote_average),
       type: "serie",
+      usersId: String(user.id),
+      poster_path: String(filme[0].poster_path),
     };
-    minhaLista.push(list);
-    localStorage.setItem("@primeflix", JSON.stringify(minhaLista));
-    toast.success("Série salva com sucesso!");
+    await takeFlixApi
+      .post("/favoritos", data)
+      .then(() => {
+        toast.success("Filme salvo!");
+      })
+      .catch((error) => {
+        toast.info("Essa série já está na lista!");
+        console.log(error);
+      });
   }
 
   return (

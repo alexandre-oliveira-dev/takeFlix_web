@@ -3,24 +3,37 @@ import "./favoritos.css";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Header from "../../components/Header";
+import takeFlixApi from "../../services/takeFlixApi";
 
 function Favoritos() {
   const [filmes, setFilmes] = useState([]);
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    let localstorage = JSON.parse(localStorage.getItem("@primeflix")) || [];
+    setLoad(true);
+    async function load() {
+      const user = JSON.parse(localStorage.getItem("@tokenTakeflix")) || [];
 
-    setFilmes(localstorage);
-    console.log(localstorage);
+      await takeFlixApi.get(`/favoritos/${user.id}`).then((data) => {
+        setLoad(false);
+        setFilmes(data.data);
+      });
+    }
+    load();
   }, []);
 
-  function excluir(id) {
-    let filtro = filmes.filter((item) => {
-      return item.id !== id;
-    });
-    setFilmes(filtro);
-    localStorage.setItem("@primeflix", JSON.stringify(filtro));
-    toast.success("Filme excluido com sucesso!");
+  async function excluir(id) {
+    await takeFlixApi
+      .delete(`/favoritos/${id}`)
+      .then(() => {
+        toast.success("Excluido com sucesso!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
+      .catch((error) => {
+        toast.error("ops!, tente novamente mais tarde.");
+      });
   }
 
   return (
@@ -35,24 +48,25 @@ function Favoritos() {
           alignItems: "center",
         }}
       >
+        {load && <h2 style={{ color: "#fff" }}>Carregando...</h2>}
         {filmes?.map((item) => {
           return (
             <>
-              <li className="item" key={item.id}>
+              <li className="item" key={item.imdid}>
                 <div className="box-info">
                   <img
                     className="imgposter2"
-                    src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
                     alt={item.title}
                   />
-                  {item.type == "filme" ? <span>{item.title}</span> : <span>{item.name}</span>}
-                  <span>Avaliação: {item.vote_average}</span>
+                  <span>{item.title}</span>
+                  <span>Avaliação: {item.avaliation}</span>
                 </div>
                 <div className="btn-area2">
                   {item.type == "filme" ? (
-                    <Link to={`/filme/${item.id}`}>Ver detalhes</Link>
+                    <Link to={`/filme/${item.imdid}`}>Ver detalhes</Link>
                   ) : (
-                    <Link to={`/serie/${item.id}`}>Ver detalhes</Link>
+                    <Link to={`/serie/${item.imdid}`}>Ver detalhes</Link>
                   )}
                   <button onClick={() => excluir(item.id)}>Excluir</button>
                 </div>

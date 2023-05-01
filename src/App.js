@@ -8,15 +8,10 @@ import Footer from "./components/Footer";
 import Wellcome from "./components/Wellcome";
 
 function App() {
-  const [showmodal, setShowmodal] = useState(false);
-  useEffect(() => {
-    const istrue = JSON.parse(localStorage.getItem("@takeflixmodalremove"));
-    setShowmodal(istrue);
-  });
+
   return (
     <div className="container">
       <BrowserRouter>
-        {!showmodal && <Wellcome></Wellcome>}
         <ToastContainer autoClose={3000}></ToastContainer>
         <RoutesApp></RoutesApp>
         <Footer></Footer>
