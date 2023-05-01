@@ -15,26 +15,7 @@ export default function Footer() {
           <Link to={"/series/page/1"}>Séries</Link>
           <Link to={"/favoritos"}>Favoritos</Link>
         </div>
-        <div className="boxButtons">
-          <h3>Contatos</h3>
-          <p>📩 webgeekagency@gmail.com</p>
-          <p>📩 alexandredev.frontend@gmail.com</p>
-          <p>📱 (11)99440-7328</p>
-        </div>
-        <div className="boxButtons">
-          <h3>Anunciar na TakeFlix!</h3>
-          <p style={{ maxWidth: "250px" }}>
-            O acesso ao nosso site está crescendo a cada dia. Aproveite essa oportunidade para
-            promover sua marca ou empresa conosco. Clique aqui para anunciar agora mesmo!
-          </p>
-          <a
-            target="_blank"
-            style={{ textDecoration: "underline" }}
-            href="https://wa.me/5511994407328?text=Ol%C3%A1%2C+gostaria+de+anunciar+no+site+Takeflix."
-          >
-            <BsWhatsapp color="#fff"></BsWhatsapp> Nosso whatsapp
-          </a>
-        </div>
+       
         <div className="boxButtons">
           <img alt="img" src={img}></img>
         </div>
