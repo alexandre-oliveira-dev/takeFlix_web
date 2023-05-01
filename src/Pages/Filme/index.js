@@ -95,7 +95,7 @@ function Series() {
                         : { width: "100%" }
                     }
                   >
-                    {/*
+                    {
                       <iframe
                         id="EmbedderContainer"
                         src={url}
@@ -103,7 +103,7 @@ function Series() {
                         height={window.screen.width > 500 ? "350px" : "300px"}
                         allowfullscreen="allowfullscreen"
                         frameborder="0"
-                      ></iframe>*/}
+                      ></iframe>}
                   </div>
                   <div className="boxPlayers">
                     <p>Players disponíveis:</p>
