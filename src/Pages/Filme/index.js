@@ -52,7 +52,6 @@ function Series() {
       type: "filme",
       usersId: String(user.id),
       poster_path: String(filme[0].poster_path),
-
     };
     await takeFlixApi
       .post("/favoritos", data)
@@ -103,7 +102,8 @@ function Series() {
                         height={window.screen.width > 500 ? "350px" : "300px"}
                         allowfullscreen="allowfullscreen"
                         frameborder="0"
-                      ></iframe>}
+                      ></iframe>
+                    }
                   </div>
                   <div className="boxPlayers">
                     <p>Players disponíveis:</p>

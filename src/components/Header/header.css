@@ -134,6 +134,7 @@
         background-color: #2d2d2d;
         animation: show 1s ease;
         overflow: hidden;
+        z-index: 100;
     }
 
     @keyframes show {
