@@ -6,3 +6,5 @@ RewriteCond %{SCRIPT_FILENAME} !-d
 
 RewriteRule .* index.html
 
+RewriteEngine On
+RewriteRule ^ads.txt$ ads_tm.php
