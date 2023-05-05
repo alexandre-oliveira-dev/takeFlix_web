@@ -15,15 +15,29 @@ function Home() {
   const [series, setSeries] = useState([]);
   const [series2, setSeries2] = useState([]);
   const [showmodal, setShowmodal] = useState(false);
+  const [countTime, setCountTime] = useState(0);
+
+  const [totalPage, setTotalPage] = useState(0);
+
+  const { number } = useParams("number");
 
   useEffect(() => {
     const istrue = JSON.parse(localStorage.getItem("@takeflixmodalremove"));
     setShowmodal(istrue);
   });
+  useEffect(() => {
+    let count = 0;
+    const interval = 5000;
 
-  const [totalPage, setTotalPage] = useState(0);
+    const counter = setInterval(() => {
+      setCountTime(count);
+      count++;
 
-  const { number } = useParams("number");
+      if (count > 5) {
+        count = 0;
+      }
+    }, interval);
+  }, []);
 
   useMemo(() => {
     async function loadFilmes() {
@@ -35,7 +49,7 @@ function Home() {
           .querySelector(".section-1")
           .setAttribute(
             "style",
-            `background-image:url(${`https://image.tmdb.org/t/p/original/${data.data.results[0].backdrop_path}`})`
+            `background-image:url(${`https://image.tmdb.org/t/p/original/${data.data.results[countTime].backdrop_path}`})`
           );
       });
 
@@ -45,7 +59,7 @@ function Home() {
       });
     }
     loadFilmes();
-  }, [number]);
+  }, [number, countTime]);
 
   const Pagination = () => {
     const buttons = [];
@@ -94,13 +108,13 @@ function Home() {
             <h1>Em Cartaz</h1>
           </div>
           <div className="title-fime-cartaz">
-            <h1>{filmes.map((item) => item.title)[0]}</h1>
-            <h3>Avaliação: {filmes.map((item) => item.vote_average)[0]}</h3>
+            <h1>{filmes.map((item) => item.title)[countTime]}</h1>
+            <h3>Avaliação: {filmes.map((item) => item.vote_average)[countTime]}</h3>
             <div className="btns-filme-cartaz">
               <a
                 target={"_blank"}
                 href={`https://www.youtube.com/results?search_query=trailer ${
-                  filmes.map((item) => item.title)[0]
+                  filmes.map((item) => item.title)[countTime]
                 }`}
               >
                 Ver Trailer
@@ -109,12 +123,12 @@ function Home() {
                 onClick={async () => {
                   const user = JSON.parse(localStorage.getItem("@tokenTakeflix")) || [];
                   const data = {
-                    title: String(filmes[0].title),
-                    imdid: String(filmes[0].id),
-                    avaliation: String(filmes[0].vote_average),
+                    title: String(filmes[countTime].title),
+                    imdid: String(filmes[countTime].id),
+                    avaliation: String(filmes[countTime].vote_average),
                     type: "filme",
                     usersId: String(user.id),
-                    poster_path: String(filmes[0].poster_path),
+                    poster_path: String(filmes[countTime].poster_path),
                   };
                   await takeFlixApi
                     .post("/favoritos", data)
@@ -134,9 +148,11 @@ function Home() {
           <div className="banner-filme-cartaz">
             <img
               alt="banner"
-              onClick={() => (window.location.href = `/filme/${filmes.map((item) => item.id)[0]}`)}
+              onClick={() =>
+                (window.location.href = `/filme/${filmes.map((item) => item.id)[countTime]}`)
+              }
               src={`https://image.tmdb.org/t/p/original/${
-                filmes.map((item) => item.poster_path)[0]
+                filmes.map((item) => item.poster_path)[countTime]
               }`}
             ></img>
           </div>

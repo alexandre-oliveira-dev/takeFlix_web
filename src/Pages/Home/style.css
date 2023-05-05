@@ -12,6 +12,7 @@
   object-fit: cover;
   background-size: cover;
   position: absolute;
+  transition: all 1s ease;
 }
 
 .containersection1banners {
@@ -195,8 +196,5 @@
     margin-top: 15px;
   }
 
-  .title-fime-cartaz a,
-  .title-fime-cartaz button {
-    width: ;
-  }
+
 }
