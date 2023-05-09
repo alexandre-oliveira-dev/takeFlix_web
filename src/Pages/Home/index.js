@@ -161,7 +161,11 @@ function Home() {
       </section>
       <section className="section2">
         <Title color="#fff" texto="Lançamentos"></Title>
-
+        <script
+          data-cfasync="false"
+          type="text/javascript"
+          src="//buzzonclick.com/a/display.php?r=6974798"
+        ></script>
         <div className="container-lista-filmes">
           {filmes.map((item) => {
             return (
