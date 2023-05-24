@@ -26,7 +26,7 @@
   "related_applications": [
     {
       "platform": "web",
-      "url": "https://takeflix.com"
+      "url": "https://takeflix-web.onrender.com"
     }
   ],
   "shortcuts": [
@@ -36,7 +36,7 @@
       "url": "/filmes/",
       "icons": [
         {
-          "src": "icons/filmes.png",
+          "src": "./img.png",
           "sizes": "192x192"
         }
       ]
@@ -47,7 +47,18 @@
       "url": "/series/",
       "icons": [
         {
-          "src": "icons/series.png",
+          "src": "./img.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Assistir Filmes online gratis",
+      "short_name": "Assistir Filmes online gratis",
+      "url": "/",
+      "icons": [
+        {
+          "src": "./img.png",
           "sizes": "192x192"
         }
       ]
