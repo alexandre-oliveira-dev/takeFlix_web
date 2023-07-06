@@ -33,7 +33,7 @@
     {
       "name": "Assistir Filmes",
       "short_name": "Filmes",
-      "url": "/filmes/",
+      "url": "https://takeflix-web.onrender.com/filmes/",
       "icons": [
         {
           "src": "./img.png",
@@ -44,7 +44,7 @@
     {
       "name": "Assistir Séries",
       "short_name": "Séries",
-      "url": "/series/",
+      "url": "https://takeflix-web.onrender.com/series/",
       "icons": [
         {
           "src": "./img.png",
@@ -55,7 +55,7 @@
     {
       "name": "Assistir Filmes online gratis",
       "short_name": "Assistir Filmes online gratis",
-      "url": "/",
+      "url": "https://takeflix-web.onrender.com",
       "icons": [
         {
           "src": "./img.png",
