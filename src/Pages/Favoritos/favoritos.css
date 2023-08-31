@@ -65,7 +65,7 @@
     opacity: 0.4;
 }
 
-@media(max-width:500px) {
+@media(max-width:850px) {
     .item {
         width: 100%;
     }

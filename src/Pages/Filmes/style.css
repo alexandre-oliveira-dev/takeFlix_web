@@ -84,7 +84,7 @@
     background-color: #2d2d2d;
 }
 
-@media(max-width:500px) {
+@media(max-width:850px) {
     .titleGenere {
 
         font-size: 17px;
